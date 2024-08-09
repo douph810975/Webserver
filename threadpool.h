@@ -10,7 +10,7 @@
 template<typename T>
 class threadpool{
 public:
-    threadpool(int thread_number=8; int max_requests=10000);
+    threadpool(int thread_number=8, int max_requests=10000);
     ~threadpool();
     bool append(T* request);
 private:
@@ -23,7 +23,7 @@ private:
     bool m_stop; //whether to stop the threads  
     static void* worker(void* arg);
     void run();
-}
+};
 
 template <typename T>
 threadpool<T>::threadpool(int thread_number,int max_requests) :
