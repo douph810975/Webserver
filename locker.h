@@ -2,6 +2,8 @@
 #define LOCKER_H
 
 #include <pthread.h>
+#include <exception>
+#include <semaphore.h>
 
 class  locker
 {
@@ -29,7 +31,7 @@ public:
 
 class cond{
 private:
-    pthread_con_t m_cond;
+    pthread_cond_t m_cond;
 public:
     cond(){
         if(pthread_cond_init(&m_cond,NULL)!=0){
@@ -51,7 +53,7 @@ public:
     bool broadcast() {
         return pthread_cond_broadcast(&m_cond) == 0;
     }
-}
+};
 
 class sem{
 private:
@@ -76,5 +78,5 @@ public:
     bool post() {
         return sem_post( &m_sem ) == 0;
     }
-}
+};
 #endif
